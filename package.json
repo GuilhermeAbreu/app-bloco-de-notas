@@ -15,7 +15,8 @@
     "capacitor:run:ios": "npx cap run ios",
     "trapeze:configure": "trapeze run capacitor.config.yaml",
     "trapeze:configure:android": "trapeze run capacitor.config.yaml --platform android",
-    "trapeze:configure:ios": "trapeze run capacitor.config.yaml --platform ios"
+    "trapeze:configure:ios": "trapeze run capacitor.config.yaml --platform ios",
+    "cap:assets": "npx capacitor-assets generate"
   },
   "private": true,
   "dependencies": {
@@ -36,6 +37,7 @@
     "@capacitor/haptics": "7.0.1",
     "@capacitor/keyboard": "7.0.1",
     "@capacitor/local-notifications": "^7.0.1",
+    "@capacitor/splash-screen": "^7.0.1",
     "@capacitor/status-bar": "7.0.1",
     "@guilhermeabreudev/capacitor-orm-sqlite": "^3.0.0",
     "@ionic/angular": "^8.0.0",
@@ -55,6 +57,7 @@
     "@angular/cli": "^19.0.0",
     "@angular/compiler-cli": "^19.0.0",
     "@angular/language-service": "^19.0.0",
+    "@capacitor/assets": "^3.0.5",
     "@capacitor/cli": "7.2.0",
     "@ionic/angular-toolkit": "^12.0.0",
     "@types/jasmine": "~5.1.0",

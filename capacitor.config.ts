@@ -4,7 +4,11 @@ const config: CapacitorConfig = {
   appId: 'br.com.abreu.guilherme.notas',
   appName: 'Notas',
   webDir: 'www',
-  plugins: {}
+  plugins: {
+    SplashScreen: {
+      launchAutoHide: false,
+    },
+  },
 };
 
 export default config;
