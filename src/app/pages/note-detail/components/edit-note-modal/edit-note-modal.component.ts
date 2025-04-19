@@ -64,7 +64,7 @@ export class EditNoteModalComponent implements OnInit {
     this.form.patchValue({
       title: this.note.title,
       description: this.note.description,
-      notifyAt: this.note.notifyAt
+      notifyAt: this.note.notifyAt?.toISOString()
     });
     this.imagePath = this.note.imagePath;
     this.dataHoraSelecionada = this.note.notifyAt ? new Date(this.note.notifyAt) : null;
@@ -133,7 +133,7 @@ export class EditNoteModalComponent implements OnInit {
     const updatedNote: NoteUpdate = {
       title: formValue.title!,
       description: formValue.description ?? null,
-      notifyAt: formValue.notifyAt ?? null,
+      notifyAt: formValue.notifyAt ? new Date(formValue.notifyAt) : null,
       image: this.imageChanged ? this.imagePath : null
     };
 

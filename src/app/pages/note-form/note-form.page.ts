@@ -60,7 +60,7 @@ export class NoteFormPage {
     const noteData = {
       title: formValue.title,
       description: formValue.description ??  null,
-      notifyAt: formValue.notifyAt ?? null,
+      notifyAt: formValue.notifyAt ? new Date(formValue.notifyAt) : null,
       image: this.imagePath ?? null,
     };
 

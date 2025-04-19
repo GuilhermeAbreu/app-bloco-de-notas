@@ -17,14 +17,14 @@ export class Note implements NoteImplement {
   public imagePath!: string | null;
 
   @Column()
-  public notifyAt!: string;
+  public notifyAt!: Date | null;
 
   constructor(note?: NotePartial) {
     this.id = note?.id ?? this.id;
     this.title = note?.title ?? this.title;
     this.description = note?.description ?? this.description;
     this.imagePath = note?.imagePath ?? this.imagePath;
-    this.notifyAt = note?.notifyAt ?? this.notifyAt;
+    this.notifyAt = note?.notifyAt ? new Date(note.notifyAt) : this.notifyAt;
   }
 
 }

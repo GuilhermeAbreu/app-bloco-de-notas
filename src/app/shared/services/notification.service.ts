@@ -17,24 +17,34 @@ export class NotificationService {
     }
   }
 
-  async scheduleNotification(title: string, body: string, datetime: string) {
-    const triggerDate = new Date(datetime);
+  async scheduleNotification(options: {
+    title: string;
+    body: string;
+    datetime: string;
+    urlImage: string;
+  }) {
+    const triggerDate = new Date(options.datetime);
 
-    console.log(triggerDate);
+    const scheduleOptions: ScheduleOptions = {
 
-    const options: ScheduleOptions = {
       notifications: [
         {
           id: Math.ceil(Math.random() * 100),
-          title,
-          body,
+          title: options.title,
+          body: options.body,
           schedule: { at: (triggerDate )},
           channelId: 'default',
           ongoing: false,
+          attachments: [
+            {
+                url: options.urlImage,
+                id: options.urlImage,
+            }
+          ]
         },
       ],
     };
 
-    await LocalNotifications.schedule(options);
+    await LocalNotifications.schedule(scheduleOptions);
   }
 }

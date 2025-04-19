@@ -30,8 +30,8 @@ export class NoteRepositoryService {
     try {
 
       if (noteSave.image) {
-        const {path} = await this.fileService.saveFile(noteSave.image, '.jpeg');
-        note.imagePath = path;
+        const {url} = await this.fileService.saveFile(noteSave.image, '.jpeg');
+        note.imagePath = url;
       }
 
       DatabaseConnectionOrmSQlite.beginTransaction();
@@ -42,11 +42,12 @@ export class NoteRepositoryService {
       );
 
       if (note.notifyAt) {
-        await this.notification.scheduleNotification(
-          'Lembrete',
-          `Nota: ${note.title}`,
-          note.notifyAt
-        );
+        await this.notification.scheduleNotification({
+          title: 'Lembrete',
+          body: `Nota: ${note.title}`,
+          datetime: note.notifyAt.toISOString(),
+          urlImage: note.imagePath ?? '',
+        });
       }
 
       DatabaseConnectionOrmSQlite.commitTransaction();
@@ -81,12 +82,13 @@ export class NoteRepositoryService {
           .update(noteUpdate)
       );
 
-      if (note.notifyAt) {
-        await this.notification.scheduleNotification(
-          'Lembrete',
-          `Nota: ${note.title}`,
-          note.notifyAt
-        );
+      if (noteUpdate.notifyAt) {
+        await this.notification.scheduleNotification({
+          title: 'Lembrete',
+          body: `Nota: ${noteUpdate.title}`,
+          datetime: noteUpdate.notifyAt.toISOString(),
+          urlImage: noteUpdate.imagePath ?? '',
+        });
       }
 
       DatabaseConnectionOrmSQlite.commitTransaction();
@@ -115,7 +117,7 @@ export class NoteRepositoryService {
         .getQuery()
     );
 
-    return note[0] ?? null;
+    return note[0] ? new Note(note[0]) : null;
   }
 
   public async delete(id: number) {
