@@ -37,17 +37,6 @@ export class HomePage implements OnInit {
 
   async loadNotes() {
     this.notes = await this.noteRepository.findAll();
-
-    for (const note of this.notes) {
-      if (note.imagePath) {
-        try {
-          note.imagePath = await this.file.getFilePath(note.imagePath);
-        } catch (error) {
-          console.error('Erro ao carregar imagem:', error);
-          note.imagePath = null;
-        }
-      }
-    }
   }
 
   openNote(id: number) {

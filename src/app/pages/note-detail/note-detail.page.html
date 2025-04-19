@@ -1,45 +1,40 @@
 <ion-header>
-  <ion-toolbar color="primary" class="header-toolbar">
+  <ion-toolbar color="primary">
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/home" class="back-button"></ion-back-button>
+      <ion-back-button defaultHref="/"></ion-back-button>
     </ion-buttons>
-    <ion-title class="header-title">Detalhes da Nota</ion-title>
-    <ion-buttons slot="end">
-      <ion-button (click)="deleteNote()" class="delete-button" fill="clear">
-        <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
-      </ion-button>
-    </ion-buttons>
+    <ion-title>Detalhes da Nota</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding content-background">
-  <div class="note-container">
-    <ion-card class="note-card">
-      <div class="card-header">
-        <ion-icon name="document-text-outline" class="note-icon"></ion-icon>
-        <ion-card-title class="note-title">{{ note?.title }}</ion-card-title>
-      </div>
+<ion-content class="ion-padding">
+  <ion-card class="ion-margin-bottom">
+    <ion-card-header>
+      <ion-card-title class="ion-text-wrap">{{ note?.title }}</ion-card-title>
+      <ion-card-subtitle *ngIf="note?.notifyAt">
+        <ion-icon name="notifications-outline" class="ion-margin-end"></ion-icon>
+        {{ note?.notifyAt | date:'dd/MM/yyyy HH:mm' }}
+      </ion-card-subtitle>
+    </ion-card-header>
 
-      <ion-card-content>
-        <div class="note-content">
-          <div class="description-container">
-            <ion-icon name="create-outline" class="content-icon"></ion-icon>
-            <p class="note-description">{{ note?.description }}</p>
-          </div>
+    <ion-card-content>
+      <ion-text>
+        <p class="ion-text-wrap">{{ note?.description }}</p>
+      </ion-text>
 
-          <div class="note-image-container" *ngIf="note?.imagePath">
-            <ion-img [src]="note?.imagePath" class="note-image"></ion-img>
-          </div>
-
-          <ion-item lines="none" *ngIf="note?.notifyAt" class="reminder-item">
-            <ion-icon name="notifications-outline" slot="start" class="reminder-icon"></ion-icon>
-            <ion-label>
-              <h3>Lembrete</h3>
-              <p>{{ note?.notifyAt | date:'dd/MM/yyyy HH:mm' }}</p>
-            </ion-label>
-          </ion-item>
-        </div>
-      </ion-card-content>
-    </ion-card>
-  </div>
+      <ion-img *ngIf="note?.imagePath"
+               [src]="note?.imagePath"
+               class="ion-margin-top ion-rounded"
+               style="max-height: 300px; object-fit: cover;">
+      </ion-img>
+    </ion-card-content>
+  </ion-card>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="editNote()" color="primary" class="ion-margin-bottom">
+      <ion-icon name="create-outline"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-button (click)="deleteNote()" color="danger" class="ion-margin-bottom">
+      <ion-icon name="trash-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>

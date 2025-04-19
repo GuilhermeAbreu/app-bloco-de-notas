@@ -1,19 +1,21 @@
-// src/app/pages/note-detail/note-detail.page.ts
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { AlertController, IonicModule, NavController } from '@ionic/angular';
+import { AlertController, IonicModule, ModalController, NavController } from '@ionic/angular';
+import { addIcons } from 'ionicons';
+import { alarmOutline, closeOutline, createOutline, notificationsOutline, trashOutline } from 'ionicons/icons';
 import { NoteRepositoryService } from 'src/app/repositories/note.repository.service';
 import { Note } from 'src/app/shared/interfaces/note.interface';
 import { FileService } from 'src/app/shared/services/file.service';
 import { PhotoService } from 'src/app/shared/services/photo.service';
+import { EditNoteModalComponent } from './components/edit-note-modal/edit-note-modal.component';
 
 @Component({
   standalone: true,
   selector: 'app-note-detail',
-  imports: [CommonModule, IonicModule],
   templateUrl: './note-detail.page.html',
   styleUrls: ['./note-detail.page.scss'],
+  imports: [CommonModule, IonicModule],
 })
 export class NoteDetailPage implements OnInit {
   note?: Note;
@@ -23,9 +25,18 @@ export class NoteDetailPage implements OnInit {
     private photo: PhotoService,
     private alertCtrl: AlertController,
     private navCtrl: NavController,
+    private modalCtrl: ModalController,
     private noteRepository: NoteRepositoryService,
     private fileService: FileService
-  ) {}
+  ) {
+    addIcons({
+      notificationsOutline,
+      createOutline,
+      trashOutline,
+      closeOutline,
+      alarmOutline
+    })
+  }
 
   async ngOnInit() {
     const id = Number(this.route.snapshot.paramMap.get('id'));
@@ -37,15 +48,6 @@ export class NoteDetailPage implements OnInit {
     }
 
     this.note = note;
-
-    if (this.note?.imagePath) {
-      try {
-        this.note.imagePath = await this.fileService.getFilePath(this.note.imagePath);
-      } catch (error) {
-        console.error('Erro ao carregar imagem:', error);
-        this.note.imagePath = null;
-      }
-    }
   }
 
   async deleteNote() {
@@ -66,4 +68,23 @@ export class NoteDetailPage implements OnInit {
 
     await alert.present();
   }
+
+  async editNote() {
+    if (!this.note) return;
+
+    const modal = await this.modalCtrl.create({
+      component: EditNoteModalComponent,
+      componentProps: {
+        note: { ...this.note }
+      }
+    });
+
+    await modal.present();
+
+    const { data } = await modal.onWillDismiss();
+    if (data) {
+      this.note = data;
+    }
+  }
+
 }

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { DatabaseConnectionOrmSQlite, QueryBuildOrmSQlite } from '@guilhermeabreudev/capacitor-orm-sqlite';
 import { Note } from '../model/note.model';
-import { NotesSave } from '../shared/interfaces/note.interface';
+import { NotesSave, NoteUpdate } from '../shared/interfaces/note.interface';
 import { FileService } from '../shared/services/file.service';
 import { NotificationService } from '../shared/services/notification.service';
 
@@ -58,6 +58,41 @@ export class NoteRepositoryService {
         await this.fileService.deleteFile(note.imagePath);
       }
 
+      console.error(error);
+      DatabaseConnectionOrmSQlite.rollbackTransaction();
+      throw error;
+    }
+  }
+
+  public async update(note: NoteUpdate, id: number): Promise<Note> {
+    try {
+      DatabaseConnectionOrmSQlite.beginTransaction();
+
+      let noteUpdate = new Note(note);
+
+      if (note.image) {
+        const {url} = await this.fileService.saveFile(note.image, '.jpeg');
+        noteUpdate.imagePath = url;
+      }
+
+      const result = await DatabaseConnectionOrmSQlite.query(
+        new QueryBuildOrmSQlite(Note)
+          .where('id', id)
+          .update(noteUpdate)
+      );
+
+      if (note.notifyAt) {
+        await this.notification.scheduleNotification(
+          'Lembrete',
+          `Nota: ${note.title}`,
+          note.notifyAt
+        );
+      }
+
+      DatabaseConnectionOrmSQlite.commitTransaction();
+      return result[0];
+
+    } catch (error) {
       console.error(error);
       DatabaseConnectionOrmSQlite.rollbackTransaction();
       throw error;

@@ -14,7 +14,7 @@ export class Note implements NoteImplement {
   public description: string = '';
 
   @Column()
-  public imagePath!: string;
+  public imagePath!: string | null;
 
   @Column()
   public notifyAt!: string;

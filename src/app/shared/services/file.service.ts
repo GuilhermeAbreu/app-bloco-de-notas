@@ -26,6 +26,8 @@ export class FileService {
   async saveFile(content: string | Blob, extension: string = ''): Promise<{
     path: string;
     fileName: string;
+    uri: string;
+    url: string;
   }> {
     try {
       const fileName = `${this.generateUUID()}${extension}`;
@@ -50,7 +52,7 @@ export class FileService {
         data = content.split(',')[1] || content;
       }
 
-      await Filesystem.writeFile({
+      const {uri} = await Filesystem.writeFile({
         path,
         data,
         directory: Directory.Data,
@@ -58,7 +60,9 @@ export class FileService {
 
       return {
         path,
-        fileName
+        fileName,
+        uri,
+        url: Capacitor.convertFileSrc(uri)
       };
 
     } catch (error) {
