@@ -35,6 +35,11 @@ platforms:
     versionCode: $VERSION_CODE
     minSdkVersion: $MIN_SDK_VERSION
     targetSdkVersion: $TARGET_SDK_VERSION
+
+    copy:
+      - src: ../assets/audios
+        dest: app/src/main/res/raw
+
     res:
       - path: xml
         file: data_extraction_rules.xml
@@ -57,8 +62,12 @@ platforms:
       - path: values
         file: strings.xml
         text: |
-          <resources>
-              <string name="app_name">Notas</string>
+              <resources>
+                  <string name="app_name">Notas</string>
+                  <string name="title_activity_main">Notas</string>
+                  <string name="package_name">br.com.abreu.guilherme.notas</string>
+                  <string name="custom_url_scheme">br.com.abreu.guilherme.notas</string>
+              </resources>
 
     manifest:
       - file: AndroidManifest.xml

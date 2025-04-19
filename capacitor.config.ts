@@ -8,6 +8,14 @@ const config: CapacitorConfig = {
     SplashScreen: {
       launchAutoHide: false,
     },
+    StatusBar: {
+      overlaysWebView: true,
+    },
+    LocalNotifications: {
+      smallIcon: 'ic_launcher',
+      iconColor: '#150e3a',
+      sound: 'notification',
+    },
   },
 };
 

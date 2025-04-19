@@ -34,6 +34,7 @@ export class NotificationService {
           schedule: { at: (triggerDate )},
           channelId: 'default',
           ongoing: false,
+          sound: 'notification.wav',
         },
       ],
     };
