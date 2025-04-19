@@ -47,12 +47,4 @@ export class HomePage implements OnInit {
   addNote() {
     this.router.navigate(['/nova-nota']);
   }
-
-  async scheduleNotification() {
-    await this.notificationService.scheduleNotification({
-      title: 'Teste',
-      body: 'Teste',
-      datetime: new Date(Date.now() + 1000 * 3).toISOString(),
-    });
-  }
 }
