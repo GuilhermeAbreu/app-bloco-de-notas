@@ -21,7 +21,6 @@ export class NotificationService {
     title: string;
     body: string;
     datetime: string;
-    urlImage: string;
   }) {
     const triggerDate = new Date(options.datetime);
 
@@ -35,12 +34,6 @@ export class NotificationService {
           schedule: { at: (triggerDate )},
           channelId: 'default',
           ongoing: false,
-          attachments: [
-            {
-                url: options.urlImage,
-                id: options.urlImage,
-            }
-          ]
         },
       ],
     };

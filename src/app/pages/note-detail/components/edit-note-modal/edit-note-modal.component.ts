@@ -134,7 +134,8 @@ export class EditNoteModalComponent implements OnInit {
       title: formValue.title!,
       description: formValue.description ?? null,
       notifyAt: formValue.notifyAt ? new Date(formValue.notifyAt) : null,
-      image: this.imageChanged ? this.imagePath : null
+      image: this.imageChanged ? this.imagePath : null,
+      imagePath: this.imagePath
     };
 
     const note = await this.noteRepository.update(updatedNote, this.note.id);

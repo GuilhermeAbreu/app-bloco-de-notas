@@ -29,4 +29,5 @@ export type NoteUpdate = {
   description: string | null;
   image: string | null;
   notifyAt: Date | null;
+  imagePath: string | null;
 }

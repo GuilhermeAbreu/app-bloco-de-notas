@@ -46,7 +46,6 @@ export class NoteRepositoryService {
           title: 'Lembrete',
           body: `Nota: ${note.title}`,
           datetime: note.notifyAt.toISOString(),
-          urlImage: note.imagePath ?? '',
         });
       }
 
@@ -87,7 +86,6 @@ export class NoteRepositoryService {
           title: 'Lembrete',
           body: `Nota: ${noteUpdate.title}`,
           datetime: noteUpdate.notifyAt.toISOString(),
-          urlImage: noteUpdate.imagePath ?? '',
         });
       }
 
