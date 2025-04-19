@@ -1,0 +1,93 @@
+vars:
+  APP_NAME:
+    default: Notas
+    type: string
+  BUNDLE_ID:
+    default: br.com.abreu.guilherme.notas
+    type: string
+  PACKAGE_NAME:
+    default: br.com.abreu.guilherme.notas
+    type: string
+  VERSION:
+    default: 1.0.0
+    type: string
+  VERSION_CODE:
+    default: 1
+    type: string
+  BUILD_NUMBER:
+    default: 1
+    type: number
+  MIN_SDK_VERSION:
+    default: 22
+    type: number
+  TARGET_SDK_VERSION:
+    default: 33
+    type: number
+
+server:
+  androidScheme: https
+
+platforms:
+  android:
+    appName: $APP_NAME
+    packageName: $PACKAGE_NAME
+    versionName: $VERSION
+    versionCode: $VERSION_CODE
+    minSdkVersion: $MIN_SDK_VERSION
+    targetSdkVersion: $TARGET_SDK_VERSION
+    res:
+      - path: xml
+        file: data_extraction_rules.xml
+        text: |
+          <?xml version="1.0" encoding="utf-8"?>
+          <data-extraction-rules>
+              <cloud-backup>
+                <exclude domain="root" />
+                <exclude domain="database" />
+                <exclude domain="sharedpref" />
+                <exclude domain="external" />
+              </cloud-backup>
+              <device-transfer>
+                <exclude domain="root" />
+                <exclude domain="database" />
+                <exclude domain="sharedpref" />
+                <exclude domain="external" />
+              </device-transfer>
+          </data-extraction-rules>
+      - path: values
+        file: strings.xml
+        text: |
+          <resources>
+              <string name="app_name">Notas</string>
+              <string name="title_activity_main">Notas</string>
+              <string name="package_name">br.com.abreu.guilherme.notas</string>
+              <string name="custom_url_scheme">br.com.abreu.guilherme.notas</string>
+          </resources>
+    manifest:
+      - file: AndroidManifest.xml
+        target: manifest/application
+        attrs:
+          android:allowBackup: false
+          android:fullBackupContent: false
+          android:icon: "@mipmap/ic_launcher"
+          android:label: "@string/app_name"
+          android:roundIcon: "@mipmap/ic_launcher_round"
+          android:supportsRtl: true
+          android:theme: "@style/AppTheme"
+          android:dataExtractionRules: "@xml/data_extraction_rules"
+          android:usesCleartextTraffic: true
+          android:requestLegacyExternalStorage: true
+      - file: AndroidManifest.xml
+        target: manifest
+        merge: |
+          <manifest>
+            <uses-permission android:name="android.permission.INTERNET" />
+            <uses-permission android:name="android.permission.CAMERA" />
+            <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+            <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+            <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+            <uses-permission android:name="android.permission.VIBRATE" />
+            <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+            <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+            <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+          </manifest>

@@ -1,16 +1,10 @@
 import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'io.ionic.starter',
-  appName: 'app-test',
+  appId: 'br.com.abreu.guilherme.notas',
+  appName: 'Notas',
   webDir: 'www',
-  plugins: {
-    LocalNotifications: {
-      // smallIcon: "ic_stat_icon_config_sample",
-      iconColor: "#488AFF",
-      // sound: "beep.wav"
-    }
-  }
+  plugins: {}
 };
 
 export default config;

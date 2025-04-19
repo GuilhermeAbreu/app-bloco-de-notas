@@ -12,7 +12,10 @@
     "lint": "ng lint",
     "capacitor:build": "npx cap sync",
     "capacitor:run:android": "npx cap run android -l --port=8100",
-    "capacitor:run:ios": "npx cap run ios"
+    "capacitor:run:ios": "npx cap run ios",
+    "trapeze:configure": "trapeze run capacitor.config.yaml",
+    "trapeze:configure:android": "trapeze run capacitor.config.yaml --platform android",
+    "trapeze:configure:ios": "trapeze run capacitor.config.yaml --platform ios"
   },
   "private": true,
   "dependencies": {
@@ -36,6 +39,7 @@
     "@capacitor/status-bar": "7.0.1",
     "@guilhermeabreudev/capacitor-orm-sqlite": "^3.0.0",
     "@ionic/angular": "^8.0.0",
+    "@trapezedev/configure": "^7.1.3",
     "ionicons": "^7.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
