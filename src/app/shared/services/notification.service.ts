@@ -35,6 +35,7 @@ export class NotificationService {
           ongoing: false,
           sound: 'notification.wav',
           smallIcon: 'icon',
+          largeIcon: 'icon',
         },
       ],
     };
