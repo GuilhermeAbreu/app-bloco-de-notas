@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 import { addIcons } from 'ionicons';
-import { add } from 'ionicons/icons';
+import { add, alarmOutline } from 'ionicons/icons';
 import { NoteRepositoryService } from 'src/app/repositories/note.repository.service';
 import { Note } from 'src/app/shared/interfaces/note.interface';
 import { FileService } from 'src/app/shared/services/file.service';
@@ -24,7 +24,7 @@ export class HomePage implements OnInit {
     private file: FileService,
     private router: Router
   ) {
-    addIcons({add})
+    addIcons({add, alarmOutline})
   }
 
   async ngOnInit() {
