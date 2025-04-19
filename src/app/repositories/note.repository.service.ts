@@ -30,8 +30,8 @@ export class NoteRepositoryService {
     try {
 
       if (noteSave.image) {
-       const {path} = await this.fileService.saveFile(noteSave.image, '.jpeg');
-       note.imagePath = path;
+        const {path} = await this.fileService.saveFile(noteSave.image, '.jpeg');
+        note.imagePath = path;
       }
 
       DatabaseConnectionOrmSQlite.beginTransaction();

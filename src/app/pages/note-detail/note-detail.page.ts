@@ -5,8 +5,8 @@ import { ActivatedRoute } from '@angular/router';
 import { AlertController, IonicModule, NavController } from '@ionic/angular';
 import { NoteRepositoryService } from 'src/app/repositories/note.repository.service';
 import { Note } from 'src/app/shared/interfaces/note.interface';
+import { FileService } from 'src/app/shared/services/file.service';
 import { PhotoService } from 'src/app/shared/services/photo.service';
-
 
 @Component({
   standalone: true,
@@ -23,7 +23,8 @@ export class NoteDetailPage implements OnInit {
     private photo: PhotoService,
     private alertCtrl: AlertController,
     private navCtrl: NavController,
-    private noteRepository: NoteRepositoryService
+    private noteRepository: NoteRepositoryService,
+    private fileService: FileService
   ) {}
 
   async ngOnInit() {
@@ -38,7 +39,12 @@ export class NoteDetailPage implements OnInit {
     this.note = note;
 
     if (this.note?.imagePath) {
-      this.note.imagePath = this.note.imagePath.replace('file://', '');
+      try {
+        this.note.imagePath = await this.fileService.getFilePath(this.note.imagePath);
+      } catch (error) {
+        console.error('Erro ao carregar imagem:', error);
+        this.note.imagePath = null;
+      }
     }
   }
 

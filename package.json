@@ -5,11 +5,14 @@
   "homepage": "https://ionicframework.com/",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --port=8100 --host=0.0.0.0",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "capacitor:build": "npx cap sync",
+    "capacitor:run:android": "npx cap run android -l --port=8100",
+    "capacitor:run:ios": "npx cap run ios"
   },
   "private": true,
   "dependencies": {

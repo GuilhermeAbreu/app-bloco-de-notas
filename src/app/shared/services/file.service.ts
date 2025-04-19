@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
+import { Capacitor } from '@capacitor/core';
 import { Directory, Encoding, Filesystem } from '@capacitor/filesystem';
+import { FileUtil } from '../utils/file.util';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +13,6 @@ export class FileService {
     if (permission.publicStorage === 'denied') {
       throw new Error('Permissão para acessar o diretório não concedida');
     }
-
   }
 
   private generateUUID(): string {
@@ -22,10 +23,9 @@ export class FileService {
     });
   }
 
-  async saveFile(content: string, extension: string = ''): Promise<{
+  async saveFile(content: string | Blob, extension: string = ''): Promise<{
     path: string;
     fileName: string;
-    content: string;
   }> {
     try {
       const fileName = `${this.generateUUID()}${extension}`;
@@ -43,17 +43,22 @@ export class FileService {
         }
       }
 
+      let data: string;
+      if (content instanceof Blob) {
+        data = await FileUtil.blobToBase64(content);
+      } else {
+        data = content.split(',')[1] || content;
+      }
+
       await Filesystem.writeFile({
         path,
-        data: content,
+        data,
         directory: Directory.Data,
-        encoding: Encoding.UTF8
       });
 
       return {
         path,
-        fileName,
-        content
+        fileName
       };
 
     } catch (error) {
@@ -95,6 +100,6 @@ export class FileService {
       directory: Directory.Data
     });
 
-    return result.uri;
+    return Capacitor.convertFileSrc(result.uri);
   }
 }
