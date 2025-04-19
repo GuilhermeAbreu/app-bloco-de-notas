@@ -39,6 +39,8 @@ platforms:
     copy:
       - src: ../assets/audios
         dest: app/src/main/res/raw
+      - src: ../assets/icon/android
+        dest: app/src/main/res
 
     res:
       - path: xml

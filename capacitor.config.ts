@@ -12,7 +12,7 @@ const config: CapacitorConfig = {
       overlaysWebView: true,
     },
     LocalNotifications: {
-      smallIcon: 'ic_launcher',
+      smallIcon: 'icon',
       iconColor: '#150e3a',
       sound: 'notification',
     },

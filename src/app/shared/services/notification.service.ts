@@ -32,9 +32,9 @@ export class NotificationService {
           title: options.title,
           body: options.body,
           schedule: { at: (triggerDate )},
-          channelId: 'default',
           ongoing: false,
           sound: 'notification.wav',
+          smallIcon: 'icon',
         },
       ],
     };

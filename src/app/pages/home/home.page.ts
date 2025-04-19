@@ -8,7 +8,7 @@ import { add, alarmOutline } from 'ionicons/icons';
 import { NoteRepositoryService } from 'src/app/repositories/note.repository.service';
 import { Note } from 'src/app/shared/interfaces/note.interface';
 import { FileService } from 'src/app/shared/services/file.service';
-
+import { NotificationService } from 'src/app/shared/services/notification.service';
 @Component({
   standalone: true,
   selector: 'app-home',
@@ -22,7 +22,8 @@ export class HomePage implements OnInit {
   constructor(
     private noteRepository: NoteRepositoryService,
     private file: FileService,
-    private router: Router
+    private router: Router,
+    private notificationService: NotificationService
   ) {
     addIcons({add, alarmOutline})
   }
@@ -45,5 +46,13 @@ export class HomePage implements OnInit {
 
   addNote() {
     this.router.navigate(['/nova-nota']);
+  }
+
+  async scheduleNotification() {
+    await this.notificationService.scheduleNotification({
+      title: 'Teste',
+      body: 'Teste',
+      datetime: new Date(Date.now() + 1000 * 3).toISOString(),
+    });
   }
 }
