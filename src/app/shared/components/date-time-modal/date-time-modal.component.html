@@ -1,0 +1,14 @@
+<ion-content class="ion-padding" color="secondary">
+  <ion-datetime
+    [preferWheel]="true"
+    [showDefaultButtons]="true"
+    presentation="date-time"
+    locale="pt-BR"
+    displayFormat="DD/MM/YYYY HH:mm"
+    (ionChange)="dataHoraSelecionada($event)"
+    cancelText="Cancelar"
+    doneText="Confirmar"
+    [min]="dataMinima"
+  >
+  </ion-datetime>
+</ion-content>

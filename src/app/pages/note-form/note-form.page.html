@@ -1,13 +1,13 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/home"></ion-back-button>
+      <ion-back-button defaultHref="/"></ion-back-button>
     </ion-buttons>
     <ion-title>Nova Nota</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content color="secondary">
   <form [formGroup]="form" (ngSubmit)="saveNote()">
     <ion-list class="ion-padding">
       <ion-list-header class="custom-header">
@@ -85,7 +85,7 @@
 </ion-content>
 
 <ion-footer>
-  <ion-toolbar class="ion-padding-horizontal ion-padding-vertical">
+  <ion-toolbar color="secondary" class="ion-padding-horizontal ion-padding-vertical">
     <ion-button expand="block" type="submit" (click)="saveNote()">
       Salvar Nota
     </ion-button>

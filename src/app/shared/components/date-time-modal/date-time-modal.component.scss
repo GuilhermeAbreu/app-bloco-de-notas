@@ -1,0 +1,15 @@
+ion-datetime {
+  --background: var(--ion-color-secondary);
+  --background-rgb: var(--ion-color-secondary-rgb);
+  --wheel-highlight-background: var(--ion-color-primary);
+  --wheel-highlight-border-radius: 48px;
+  --wheel-fade-background-rgb: var(--ion-color-secondary-rgb);
+}
+
+ion-datetime::part(wheel-item) {
+  color: var(--ion-color-primary);
+}
+
+ion-datetime::part(wheel-item active) {
+  color: var(--ion-color-secondary);
+}

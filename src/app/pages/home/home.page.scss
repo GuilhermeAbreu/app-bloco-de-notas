@@ -24,12 +24,10 @@
   font-size: 1.1rem;
   font-weight: 600;
   margin-bottom: 8px;
-  color: var(--ion-color-dark);
 }
 
 .note-description {
   font-size: 0.9rem;
-  color: var(--ion-color-medium);
   margin: 0;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -47,7 +45,6 @@
 
   .empty-icon {
     font-size: 64px;
-    color: var(--ion-color-medium);
     margin-bottom: 16px;
   }
 
@@ -63,7 +60,6 @@
 
   p {
     font-size: 0.9rem;
-    color: var(--ion-color-medium);
   }
 }
 
@@ -85,16 +81,11 @@ ion-img {
   border-radius: 8px;
 }
 
-ion-content {
-  --background: var(--ion-color-light);
-}
-
 ion-list {
   background: transparent;
 }
 
 ion-item {
-  --background: var(--ion-background-color);
   --border-radius: 8px;
   --padding-start: 16px;
   --padding-end: 16px;
@@ -111,7 +102,6 @@ ion-item {
   display: flex;
   align-items: center;
   margin-top: 8px;
-  color: var(--ion-color-medium);
 
   ion-icon {
     margin-right: 4px;
@@ -128,7 +118,6 @@ ion-item {
 
   p {
     font-size: 0.9rem;
-    color: var(--ion-color-medium);
     margin: 0;
     display: -webkit-box;
     -webkit-line-clamp: 2;

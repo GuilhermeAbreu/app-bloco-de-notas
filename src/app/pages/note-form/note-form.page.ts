@@ -7,7 +7,6 @@ import { ActionSheetController, IonicModule, ModalController, NavController } fr
 import { calendarOutline, camera, cameraOutline, close, closeCircle, documentTextOutline, image, imagesOutline, pencilOutline, saveOutline } from 'ionicons/icons';
 import { NoteRepositoryService } from 'src/app/repositories/note.repository.service';
 import { DateTimeModalComponent } from 'src/app/shared/components/date-time-modal/date-time-modal.component';
-import { NotificationService } from 'src/app/shared/services/notification.service';
 import { PhotoService } from 'src/app/shared/services/photo.service';
 
 @Component({
@@ -31,7 +30,6 @@ export class NoteFormPage {
     private fb: FormBuilder,
     private noteRepository: NoteRepositoryService,
     private photo: PhotoService,
-    private notification: NotificationService,
     private navCtrl: NavController,
     private modalCtrl: ModalController,
     private actionSheetCtrl: ActionSheetController
@@ -84,6 +82,8 @@ export class NoteFormPage {
 
   async abrirSeletorDataHora() {
     const modal = await this.modalCtrl.create({
+      breakpoints: [0.4],
+      initialBreakpoint: 0.4,
       component: DateTimeModalComponent,
       cssClass: 'data-hora-modal'
     });
@@ -102,6 +102,7 @@ export class NoteFormPage {
 
   async presentActionSheet() {
     const actionSheet = await this.actionSheetCtrl.create({
+      cssClass: 'action-sheet-custom',
       buttons: [
         {
           text: 'Câmera',

@@ -4,7 +4,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
+<ion-content class="ion-padding" color="secondary">
   <ion-list *ngIf="notes.length > 0; else noNotes" lines="none">
     <ion-card *ngFor="let note of notes" (click)="openNote(note.id!)" class="ion-margin-bottom">
       <ion-card-content>
@@ -17,11 +17,11 @@
             </ion-col>
             <ion-col [size]="note.imagePath ? '9' : '12'">
               <div class="note-content">
-                <h2 class="note-title ion-text-wrap">{{ note.title }}</h2>
-                <p class="note-description ion-text-wrap ion-text-break">{{ note.description }}</p>
+                <ion-text class="note-title ion-text-wrap">{{ note.title }}</ion-text>
+                <ion-text class="note-description ion-text-wrap ion-text-break">{{ note.description }}</ion-text>
                 <div *ngIf="note.notifyAt" class="note-date">
                   <ion-icon name="alarm-outline" class="note-date-icon"></ion-icon>
-                  <span>{{ note.notifyAt | date:'dd/MM/yyyy HH:mm' }}</span>
+                  <ion-text>{{ note.notifyAt | date:'dd/MM/yyyy HH:mm' }}</ion-text>
                 </div>
               </div>
             </ion-col>
@@ -33,8 +33,8 @@
 
   <ng-template #noNotes>
     <div class="ion-text-center ion-padding">
-      <ion-icon name="document-text-outline" class="ion-margin-bottom" style="font-size: 4rem; color: var(--ion-color-medium)"></ion-icon>
-      <ion-text color="medium">
+      <ion-icon name="document-text-outline" class="ion-margin-bottom" style="font-size: 4rem;"></ion-icon>
+      <ion-text>
         <h2>Nenhuma nota salva ainda</h2>
         <p>Clique no botão abaixo para criar sua primeira nota</p>
       </ion-text>
