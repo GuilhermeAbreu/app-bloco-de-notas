@@ -38,6 +38,51 @@
   }
 }
 
+@keyframes folhas {
+  0% {
+    transform: translateX(0) rotate(0deg) scale(1);
+  }
+  25% {
+    transform: translateX(-18px) rotate(-15deg) scale(0.25);
+  }
+  50% {
+    transform: translateX(0) rotate(0deg) scale(1);
+  }
+  75% {
+    transform: translateX(18px) rotate(25deg) scale(0.98);
+  }
+  100% {
+    transform: translateX(0) rotate(0deg) scale(1);
+  }
+}
+
+.splash-content ion-img {
+  animation: folhas 4s ease-in-out infinite;
+  position: relative;
+  transition: all 0.3s ease;
+  will-change: transform, filter;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent 0%, rgba(255,255,255,0.1) 50%, transparent 100%);
+    animation: folhaSombra 4s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  &:hover {
+    animation-play-state: paused;
+    transform: scale(1.05);
+  }
+}
+
+
+
+
 .splash-screen {
   position: fixed;
   top: 0;
@@ -59,7 +104,7 @@
     animation: slideOutToTop 1s 2.2s ease-in forwards;
   }
 
-  img {
+  ion-img {
     width: 150px;
     margin: auto;
   }
@@ -79,8 +124,8 @@
   height: auto;
 }
 
-.splash-content p {
-  font-size: 1.5em;
+.splash-content ion-text {
+  font-size: 18px;
   color: var(--ion-color-secondary-contrast);
 }
 

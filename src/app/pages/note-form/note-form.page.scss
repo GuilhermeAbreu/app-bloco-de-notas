@@ -31,7 +31,6 @@ ion-button {
 ion-item {
   --padding-start: 0;
   --inner-padding-end: 0;
-  --background: var(--ion-color-secondary-tint);
 }
 
 ion-list {
@@ -52,6 +51,7 @@ ion-list-header.custom-header {
 ion-item {
   margin-bottom: 8px;
   border-radius: 8px;
+  border: 1px solid #c1c1c1;
 
   &:last-child {
     margin-bottom: 0;

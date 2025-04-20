@@ -33,10 +33,6 @@ ion-item {
   --inner-padding-end: 0;
 }
 
-ion-content {
-  --background: var(--ion-color-light);
-}
-
 ion-list {
   background: transparent;
 }
@@ -49,15 +45,13 @@ ion-list-header.custom-header {
     margin: 0;
     font-size: 0.9rem;
     font-weight: 600;
-    color: var(--ion-color-medium);
   }
 }
 
 ion-item {
-  --background: var(--ion-background-color);
-  --border-radius: 8px;
   margin-bottom: 8px;
-  box-shadow: 0 1px 2px var(--ion-color-light-shade);
+  border-radius: 8px;
+  border: 1px solid #c1c1c1;
 
   &:last-child {
     margin-bottom: 0;

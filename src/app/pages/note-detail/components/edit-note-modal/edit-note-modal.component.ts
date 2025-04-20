@@ -72,7 +72,7 @@ export class EditNoteModalComponent implements OnInit {
 
   async presentActionSheet() {
     const actionSheet = await this.actionSheetCtrl.create({
-      header: 'Selecione uma opção',
+      cssClass: 'action-sheet-custom',
       buttons: [
         {
           text: 'Tirar Foto',
@@ -88,7 +88,7 @@ export class EditNoteModalComponent implements OnInit {
         },
         {
           text: 'Escolher da Galeria',
-          icon: 'images',
+          icon: 'image',
           handler: () => {
             this.photo.pickPhoto().then((photo) => {
               if (photo) {
@@ -110,7 +110,9 @@ export class EditNoteModalComponent implements OnInit {
 
   async abrirSeletorDataHora() {
     const modal = await this.modalCtrl.create({
-      component: DateTimeModalComponent
+      component: DateTimeModalComponent,
+      breakpoints: [0, 0.4],
+      initialBreakpoint: 0.4
     });
     await modal.present();
     const { data } = await modal.onWillDismiss();
