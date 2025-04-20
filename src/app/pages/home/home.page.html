@@ -4,13 +4,13 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding" color="secondary">
+<ion-content class="ion-padding" class="card-note">
   <ion-list *ngIf="notes.length > 0; else noNotes" lines="none">
-    <ion-card *ngFor="let note of notes" (click)="openNote(note.id!)" class="ion-margin-bottom">
-      <ion-card-content>
+    <ion-card *ngFor="let note of notes" (click)="openNote(note.id!)" class="ion-margin" color="tertiary">
+      <ion-card-content class="ion-no-padding">
         <ion-grid>
           <ion-row class="ion-align-items-center">
-            <ion-col size="3" *ngIf="note.imagePath">
+            <ion-col size="3" *ngIf="note.imagePath" class="ion-padding-start">
               <ion-thumbnail>
                 <ion-img [src]="note.imagePath" class="ion-rounded"></ion-img>
               </ion-thumbnail>
